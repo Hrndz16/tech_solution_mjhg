@@ -7,7 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.epw.tech_solution_mjhg.dto.EmployeeRequest;
 import com.epw.tech_solution_mjhg.dto.EmployeeResponse;
+import com.epw.tech_solution_mjhg.entity.Department;
 import com.epw.tech_solution_mjhg.entity.Employee;
+import com.epw.tech_solution_mjhg.exeption.ResourceNotFoundException;
+import com.epw.tech_solution_mjhg.repository.DepartmentRepository;
 import com.epw.tech_solution_mjhg.repository.EmployeeRepository;
 import com.epw.tech_solution_mjhg.service.EmployeeService;
 
@@ -15,14 +18,20 @@ import com.epw.tech_solution_mjhg.service.EmployeeService;
 @Transactional
 public class EmployeeServiceImpl implements EmployeeService {
 
+    private final DepartmentRepository departmentRepository;
     private final EmployeeRepository employeeRepository;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    public EmployeeServiceImpl(DepartmentRepository departmentRepository, EmployeeRepository employeeRepository) {
+        this.departmentRepository = departmentRepository;
         this.employeeRepository = employeeRepository;
     }
 
     @Override
     public EmployeeResponse createEmployee(EmployeeRequest employeeRequest) {
+        Department department = departmentRepository.findById(employeeRequest.getDepartmentId())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No existe un departamento con id " + employeeRequest.getDepartmentId()));
+
         Employee employee = new Employee();
         employee.setFirstName(employeeRequest.getFirstName());
         employee.setLastName(employeeRequest.getLastName());
@@ -30,6 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPosition(employeeRequest.getPosition());
         employee.setSalary(employeeRequest.getSalary());
         employee.setHireDate(employeeRequest.getHireDate());
+        employee.setDepartment(department);
 
         Employee savedEmployee = employeeRepository.save(employee);
         return mapToResponse(savedEmployee);
@@ -52,6 +62,8 @@ public class EmployeeServiceImpl implements EmployeeService {
                 employee.getEmail(),
                 employee.getPosition(),
                 employee.getSalary(),
-                employee.getHireDate());
+                employee.getHireDate(),
+                employee.getDepartment().getId(),
+                employee.getDepartment().getName());
     }
 }

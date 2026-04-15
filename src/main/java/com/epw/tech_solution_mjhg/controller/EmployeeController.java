@@ -17,7 +17,7 @@ import com.epw.tech_solution_mjhg.service.EmployeeService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping({"/employees", "/api/employees", "/api/emploies"})
 public class EmployeeController {
 
     private final EmployeeService employeeService;

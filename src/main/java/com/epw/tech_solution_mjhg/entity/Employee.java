@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,4 +46,8 @@ public class Employee {
 
     @Column(name = "fecha_contratacion", nullable = false)
     private LocalDate hireDate;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "departamento_id", nullable = false)
+    private Department department;
 }

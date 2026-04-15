@@ -45,4 +45,8 @@ public class EmployeeRequest {
 
     @NotNull(message = "La fecha de contratacion es obligatoria")
     private LocalDate hireDate;
+
+    @JsonAlias("departamentId")
+    @NotNull(message = "El departamento es obligatorio")
+    private Long departmentId;
 }
