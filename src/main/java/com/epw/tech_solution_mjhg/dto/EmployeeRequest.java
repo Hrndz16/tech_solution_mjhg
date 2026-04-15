@@ -3,6 +3,8 @@ package com.epw.tech_solution_mjhg.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -19,6 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class EmployeeRequest {
 
+    @JsonAlias("name")
     @NotBlank(message = "El nombre es obligatorio")
     @Size(max = 100, message = "El nombre no puede superar los 100 caracteres")
     private String firstName;
