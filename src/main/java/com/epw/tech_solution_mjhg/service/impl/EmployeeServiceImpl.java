@@ -9,7 +9,7 @@ import com.epw.tech_solution_mjhg.dto.EmployeeRequest;
 import com.epw.tech_solution_mjhg.dto.EmployeeResponse;
 import com.epw.tech_solution_mjhg.entity.Department;
 import com.epw.tech_solution_mjhg.entity.Employee;
-import com.epw.tech_solution_mjhg.exeption.ResourceNotFoundException;
+import com.epw.tech_solution_mjhg.exception.ResourceNotFoundException;
 import com.epw.tech_solution_mjhg.repository.DepartmentRepository;
 import com.epw.tech_solution_mjhg.repository.EmployeeRepository;
 import com.epw.tech_solution_mjhg.service.EmployeeService;
@@ -30,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeResponse createEmployee(EmployeeRequest employeeRequest) {
         Department department = departmentRepository.findById(employeeRequest.getDepartmentId())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "No existe un departamento con id " + employeeRequest.getDepartmentId()));
+                        "Department not found with id " + employeeRequest.getDepartmentId()));
 
         Employee employee = new Employee();
         employee.setFirstName(employeeRequest.getFirstName());

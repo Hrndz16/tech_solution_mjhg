@@ -1,4 +1,4 @@
-package com.epw.tech_solution_mjhg.exeption;
+package com.epw.tech_solution_mjhg.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

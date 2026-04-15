@@ -22,31 +22,31 @@ import lombok.Setter;
 public class EmployeeRequest {
 
     @JsonAlias("name")
-    @NotBlank(message = "El nombre es obligatorio")
-    @Size(max = 100, message = "El nombre no puede superar los 100 caracteres")
+    @NotBlank(message = "First name is required")
+    @Size(max = 100, message = "First name must not exceed 100 characters")
     private String firstName;
 
-    @NotBlank(message = "El apellido es obligatorio")
-    @Size(max = 100, message = "El apellido no puede superar los 100 caracteres")
+    @NotBlank(message = "Last name is required")
+    @Size(max = 100, message = "Last name must not exceed 100 characters")
     private String lastName;
 
-    @NotBlank(message = "El correo es obligatorio")
-    @Email(message = "El correo no tiene un formato valido")
-    @Size(max = 150, message = "El correo no puede superar los 150 caracteres")
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email format is invalid")
+    @Size(max = 150, message = "Email must not exceed 150 characters")
     private String email;
 
-    @NotBlank(message = "El cargo es obligatorio")
-    @Size(max = 100, message = "El cargo no puede superar los 100 caracteres")
+    @NotBlank(message = "Position is required")
+    @Size(max = 100, message = "Position must not exceed 100 characters")
     private String position;
 
-    @NotNull(message = "El salario es obligatorio")
-    @DecimalMin(value = "0.0", inclusive = false, message = "El salario debe ser mayor a cero")
+    @NotNull(message = "Salary is required")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Salary must be greater than zero")
     private BigDecimal salary;
 
-    @NotNull(message = "La fecha de contratacion es obligatoria")
+    @NotNull(message = "Hire date is required")
     private LocalDate hireDate;
 
     @JsonAlias("departamentId")
-    @NotNull(message = "El departamento es obligatorio")
+    @NotNull(message = "Department id is required")
     private Long departmentId;
 }

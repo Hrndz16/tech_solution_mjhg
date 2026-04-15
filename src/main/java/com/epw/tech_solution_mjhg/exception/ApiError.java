@@ -1,4 +1,4 @@
-package com.epw.tech_solution_mjhg.exeption;
+package com.epw.tech_solution_mjhg.exception;
 import java.time.Instant;
 
 public class ApiError {

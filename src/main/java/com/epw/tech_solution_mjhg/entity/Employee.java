@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "empleado")
+@Table(name = "employees")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,28 +26,28 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_empleado")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Column(name = "first_name", nullable = false, length = 100)
     private String firstName;
 
-    @Column(name = "apellido", nullable = false, length = 100)
+    @Column(name = "last_name", nullable = false, length = 100)
     private String lastName;
 
-    @Column(name = "correo", nullable = false, unique = true, length = 150)
+    @Column(name = "email", nullable = false, unique = true, length = 150)
     private String email;
 
-    @Column(name = "cargo", nullable = false, length = 100)
+    @Column(name = "position", nullable = false, length = 100)
     private String position;
 
-    @Column(name = "salario", nullable = false, precision = 12, scale = 2)
+    @Column(name = "salary", nullable = false, precision = 12, scale = 2)
     private BigDecimal salary;
 
-    @Column(name = "fecha_contratacion", nullable = false)
+    @Column(name = "hire_date", nullable = false)
     private LocalDate hireDate;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "departamento_id", nullable = false)
+    @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 }
